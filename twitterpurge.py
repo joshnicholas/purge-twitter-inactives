@@ -10,11 +10,21 @@ access_token_secret = "SECRET TOKEN"
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 
-api = tweepy.API(auth)
+api = tweepy.api(auth)
 
 ticker = 0
 
+# Grab id's of the people followed
+
 friends = api.friends_ids(USER ID)
+
+# write that to a text file
+
+with open("friends.txt", "w") as f:
+    for id in friends:
+        f.write((str(id)+"\n"))
+
+# read text file, check if they have tweeted in last 14 days and write those who haven't to another text file
 
 with open("friends.txt", "r") as r:
     for line in r:
